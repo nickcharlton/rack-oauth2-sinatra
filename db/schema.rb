@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112141836) do
+ActiveRecord::Schema.define(version: 20141112142501) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20141112141836) do
     t.string   "website"
     t.string   "redirect_uri"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "refresh_tokens", force: true do |t|
+    t.string   "token"
+    t.datetime "expires_at"
+    t.integer  "user_id"
+    t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
