@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class Client < ActiveRecord::Base
   has_many :access_tokens
   has_many :refresh_tokens
@@ -10,7 +12,7 @@ class Client < ActiveRecord::Base
   private
 
   def setup
-    self.identifier = SecureToken.generate(16)
-    self.secret = SecureToken.generate
+    self.identifier = SecureRandom.base64(16)
+    self.secret = SecureRandom.base64(64)
   end
 end

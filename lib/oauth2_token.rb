@@ -1,3 +1,5 @@
+require 'securerandom'
+
 module OAuth2Token
   def self.included(klass)
     klass.class_eval do
@@ -29,7 +31,7 @@ module OAuth2Token
   private
 
   def setup
-    self.token = SecureToken.generate
+    self.token = SecureRandom.base64(64)
     self.expires_at ||= default_lifetime.from_now
   end
 end
