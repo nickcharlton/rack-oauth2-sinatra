@@ -10,7 +10,7 @@ class AccessToken < ActiveRecord::Base
     )
     if with_refresh_token
       bearer_token.refresh_token = create_refresh_token(
-        account: account,
+        user: user,
         client: client
       ).token
     end
@@ -22,7 +22,7 @@ class AccessToken < ActiveRecord::Base
   def setup
     super
     if refresh_token
-      self.account = refresh_token.account
+      self.user = refresh_token.user
       self.client = refresh_token.client
       self.expires_at = [expires_at, refresh_token.expires_at].min
     end
